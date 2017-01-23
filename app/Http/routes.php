@@ -17,7 +17,7 @@
 
 Route::get("/", "DashboardController@index");
 Route::get("/index", "DashboardController@index");
-Route::post("simpan", "AkreditasiController@store");
+// Route::post("simpan", "AkreditasiController@store");
 
 Route::get("mahasiswa", "MahasiswaController@index");
 Route::get("/mahasiswa/tambah/", "MahasiswaController@tambah");

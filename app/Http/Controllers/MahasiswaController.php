@@ -4,8 +4,6 @@ namespace simahin\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use simahin\Http\Requests;
-
 class MahasiswaController extends Controller
 {
     //

@@ -2,7 +2,6 @@
 
 namespace simahin\Http\Controllers;
 
-use simahin\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

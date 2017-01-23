@@ -26,35 +26,7 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-8">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Total Mahasiswa</h4>
-                                <p class="category">2009 - 2016</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
-                                    <!--<div class="legend"> -->
-                                        <i class="fa fa-circle text-info"></i> Total
-                                        <i class="fa fa-circle text-danger"></i> Mahasiswa Baru
-                                        <i class="fa fa-circle text-warning"></i> Mahasiswa Lulus
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-users"></i> Total Mahasiswa 2016 : 526
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
                                 <h4 class="title">Total Legalitas Expired</h4>
@@ -76,8 +48,36 @@
                             </div>
                         </div>
                     </div>
+                    {{-- <div class="col-md-8">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Total Mahasiswa</h4>
+                                <p class="category">2009 - 2016</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartHours" class="ct-chart"></div>
+                                <div class="footer">
+                                    <!--<div class="legend"> -->
+                                        <i class="fa fa-circle text-info"></i> Total
+                                        <i class="fa fa-circle text-danger"></i> Mahasiswa Baru
+                                        <i class="fa fa-circle text-warning"></i> Mahasiswa Lulus
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-users"></i> Total Mahasiswa 2016 : 526
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
 
-                    <div class="col-md-6">
+
+
+                <div class="row">
+
+
+{{--                     <div class="col-md-6">
                     <div class="list-group card">
                         <div class="list-group-item header">
                             <h4 class="title">Notifikasi</h4>
@@ -98,7 +98,7 @@
                         </div>
                        
                     </div>
-                        {{-- <div class="card ">
+                        <div class="card ">
                             <div class="header">
                                 <h4 class="title">Notifikasi</h4>
                                 <p class="category">Aspek Legal Mahasiswa Internasional</p>
@@ -131,8 +131,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
-                    </div>
+                        </div>
+                    </div> --}}
                 </div>
 
 @stop
