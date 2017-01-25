@@ -4,6 +4,13 @@
 <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                    @if(Session::has('flash_message'))
+                                                <div class="alert alert-success">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                                                    {{ Session::get('flash_message') }}
+                                                </div>
+                                @endif
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Data Mahasiswa Asing <a href="{{ url('/mahasiswa/tambah') }}" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Mahasiswa Baru</a></h4>
@@ -22,18 +29,30 @@
                                     	<th>Action</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                        	<td>1</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>1011345849535</td>
-                                        	<td>Sastra Indonesia/Fakultas Sastra</td>
-                                        	<td>Prancis</td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr> 
-                                        <tr class="danger">
+                                    @if(is_null($mahasiswa))
+                                    <tr>
+                                        <td colspan="8"><strong class="help-text">Data tidak tersedia</strong></td>
+                                    </tr>
+                                    @else
+                                    
+                                    @php
+                                        $i=1;
+                                    @endphp
+                                    @foreach($mahasiswa as $mhs)
+                                   <tr>
+                                            <td>{{$i++}}</td>
+                                            <td>{{$mhs->nama_depan}} {{$mhs->nama_belakang}}</td>
+                                            <td>{{$mhs->nim}}</td>
+                                            <td>Sastra Indonesia/Fakultas Sastra</td>
+                                            <td>{{$mhs->negara->nama}}</td>
+                                            <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
+                                            <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
+                                            <td><a href="{{ url('/mahasiswa/detail') }}/{{$mhs->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/mahasiswa/hapus') }}/{{$mhs->id}}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                    </tr> 
+                                    @endforeach
+                                    @endif   
+                                        {{--  <tr class="danger">
                                         	<td>2</td>
                                         	<td>Dakota Rice</td>
                                         	<td>1011345849535</td>
@@ -87,7 +106,7 @@
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
                                         	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr>
+                                        </tr> --}}
                                         
                                     </tbody>
                                     <tfoot><tr><td colspan="8">

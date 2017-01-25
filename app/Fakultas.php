@@ -4,7 +4,7 @@ namespace simahin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class mahasiswa extends Model
+class Fakultas extends Model
 {
     //
 }

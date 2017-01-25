@@ -9,7 +9,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                {!! Form::open(array("url" => "/mahasiswa/tambah", 'class'=>'', 'id'=>'tambah_mahasiswa', 'role'=>'form'))!!}
                                     {{-- <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -35,13 +35,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nama Depan</label>
-                                                <input type="text" class="form-control" placeholder="Nama Depan" value="" disabled="">
+                                                <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan" value="" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nama Belakang</label>
-                                                <input type="text" class="form-control" placeholder="Nama Belakang" value="" disabled="">
+                                                <input name="nama_belakang" type="text" class="form-control" placeholder="Nama Belakang" value="" >
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Fakultas</label>
-                                                <select name="fakultas" id="fakultas" class="form-control">
+                                                <select name="fakultas_id" id="fakultas" class="form-control">
                                                                 <option value="01">Fakultas Ilmu Pendidikan</option>
                               <option value="02">Fakultas Sastra</option>
                               <option value="03">Fakultas Matematika dan Ilmu Pengetahuan Alam</option>
@@ -67,7 +67,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jurusan">Jurusan</label>
-                                                <select name="jurusan" id="jurusan" class="form-control">
+                                                <select name="jurusan_id" id="jurusan" class="form-control">
                               <option value="013">Administrasi Pendidikan</option>
                               <option value="015">Kependidikan Sekolah Dasar dan Pra Sekolah</option>
                               <option value="012">Teknologi Pendidikan</option>
@@ -116,13 +116,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>NIM</label>
-                                                <input type="text" class="form-control" placeholder="NIM" value="" disabled="">
+                                                <input name="nim" type="text" class="form-control" placeholder="NIM" value="" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Negara Asal</label>
-                                                <input type="text" class="form-control" placeholder="Negara Asal" value="" disabled="">
+                                                <input type="hidden" name="negara_id" value="96">
+                                                <input type="text" class="form-control" placeholder="Negara Asal" value="Brunei Darussalam"  name="negara">
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-4">
@@ -174,13 +175,12 @@
                                         </div>
                                     </div>
 
-                                     <button type="submit" class="btn btn-info btn-fill pull-right" disabled="">Update Profile</button>
+                                     <button type="submit" class="btn btn-info btn-fill pull-right" >Update Profile</button>
                                     <div class="clearfix"></div>
-                                </form> 
-                            </div>
+                                {!! Form::close() !!}                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
                                 <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
@@ -211,7 +211,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

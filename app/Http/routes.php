@@ -17,11 +17,11 @@
 
 Route::get("/", "DashboardController@index");
 Route::get("/index", "DashboardController@index");
-// Route::post("simpan", "AkreditasiController@store");
+Route::post("/mahasiswa/tambah", "MahasiswaController@add");
 
 Route::get("mahasiswa", "MahasiswaController@index");
 Route::get("/mahasiswa/tambah/", "MahasiswaController@tambah");
-Route::get("/mahasiswa/detail/", "MahasiswaController@detail");
+Route::get("/mahasiswa/detail/{id}", "MahasiswaController@detail");
 
 Route::auth();
 
