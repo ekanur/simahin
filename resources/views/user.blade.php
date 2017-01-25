@@ -13,7 +13,7 @@
                                 @endif
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data Mahasiswa Asing <a href="{{ url('/mahasiswa/tambah') }}" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Mahasiswa Baru</a></h4>
+                                <h4 class="title">Data [[ user Asing]] <a href="{{ url('/user/tambah') }}" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Baru</a></h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -29,7 +29,7 @@
                                     	<th>Action</th>
                                     </thead>
                                     <tbody>
-                                    @if(is_null($mahasiswa))
+                                    @if(is_null($user))
                                     <tr>
                                         <td colspan="8"><strong class="help-text">Data tidak tersedia</strong></td>
                                     </tr>
@@ -38,17 +38,17 @@
                                     @php
                                         $i=1;
                                     @endphp
-                                    @foreach($mahasiswa as $mhs)
+                                    @foreach($user as $data_user)
                                    <tr>
                                             <td>{{$i++}}</td>
-                                            <td>{{$mhs->nama_depan}} {{$mhs->nama_belakang}}</td>
-                                            <td>{{$mhs->nim}}</td>
+                                            <td>{{$data_user->nama_depan}} {{$data_user->nama_belakang}}</td>
+                                            <td>{{$data_user->nim}}</td>
                                             <td>Sastra Indonesia/Fakultas Sastra</td>
-                                            <td>{{$mhs->negara->nama}}</td>
+                                            <td>{{$data_user->negara->nama}}</td>
                                             <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
                                             <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                            <td><a href="{{ url('/mahasiswa/detail') }}/{{$mhs->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/hapus') }}/{{$mhs->id}}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                            <td><a href="{{ url('/user/detail') }}/{{$data_user->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/user/hapus') }}/{{$data_user->id}}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                     </tr> 
                                     @endforeach
                                     @endif   
@@ -60,8 +60,8 @@
                                         	<td>Prancis</td>
                                         	<td><span class="label label-danger"><i class="fa fa-ban"></i></span></td>
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                         </tr>
                                         <tr>
                                         	<td>3</td>
@@ -71,8 +71,8 @@
                                         	<td>Prancis</td>
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                         </tr>
                                         <tr class="warning">
                                         	<td>4</td>
@@ -82,8 +82,8 @@
                                         	<td>Prancis</td>
                                         	<td><span class="label label-warning"><i class="fa fa-exclamation"></i></span></td>
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                         </tr> 
                                         <tr class="danger">
                                         	<td>5</td>
@@ -93,8 +93,8 @@
                                         	<td>Prancis</td>
                                         	<td><span class="label label-warning"><i class="fa fa-exclamation"></i></span></td>
                                         	<td><span class="label label-danger"><i class="fa fa-ban"></i></span></td>
-                                        	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                         </tr> 
                                         <tr>
                                         	<td>6</td>
@@ -104,8 +104,8 @@
                                         	<td>Prancis</td>
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
                                         	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/mahasiswa/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/mahasiswa/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                         </tr> --}}
                                         
                                     </tbody>

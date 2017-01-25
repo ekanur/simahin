@@ -63,12 +63,12 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-            @if (Request::is('mahasiswa')||Request::is('mahasiswa/*'))
+            @if (Request::is('user')||Request::is('user/*'))
                 <li class="active">
             @else
                 <li>
             @endif
-                    <a href="{{url("/mahasiswa")}}">
+                    <a href="{{url("/user")}}">
                         <i class="pe-7s-user"></i>
                         <p>Mahasiswa</p>
                     </a>

@@ -17,12 +17,12 @@
 
 Route::get("/", "DashboardController@index");
 Route::get("/index", "DashboardController@index");
-Route::post("/mahasiswa/tambah", "MahasiswaController@add");
+Route::post("/user/tambah", "UserController@add");
 
-Route::get("mahasiswa", "MahasiswaController@index");
-Route::get("/mahasiswa/tambah/", "MahasiswaController@tambah");
-Route::get("/mahasiswa/detail/{id}", "MahasiswaController@detail");
+Route::get("user", "UserController@index");
+Route::get("/user/tambah/", "UserController@tambah");
+Route::get("/user/detail/{id}", "UserController@detail");
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');

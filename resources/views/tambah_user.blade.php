@@ -4,9 +4,23 @@
 <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8">
+                      <ul class="nav nav-pills nav-justified thumbnail">
+                        <li class="active">
+                          <a href="#">
+                            <h4 class="list-group-item-heading">Profil</h4>
+                            <small class="list-group-item-text">Berisi data profil, alamat, dan telepon</small>
+                          </a>
+                        </li>
+                        <li class="disabled">
+                          <a href="#">
+                            <h4 class="list-group-item-heading">Berkas Legalitas</h4>
+                            <small class="list-group-item-text">Upload scan berkas legalitas</small>
+                          </a>
+                        </li>
+                      </ul>
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">User Baru</h4>
                             </div>
                             <div class="content">
                                 {!! Form::open(array("url" => "/mahasiswa/tambah", 'class'=>'', 'id'=>'tambah_mahasiswa', 'role'=>'form'))!!}
@@ -48,7 +62,19 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                        <div class="form-group">
+                                                <label>Jenis Kegiatan</label>
+                                                <select name="tipe_user" id="" class="form-control">
+                                                  <option value="1">Mahasiswa</option>
+                                                  <option value="2">Guru</option>
+                                                  <optgroup label="Tamu Internasional">
+                                                    <option value="3">Peneliti</option>
+                                                    <option value="4">Magang</option>
+                                                    <option value="5">Lainnya</option>
+                                                  </optgroup>
+                                                </select>
+                                            </div>
+                                            {{-- <div class="form-group">
                                                 <label>Fakultas</label>
                                                 <select name="fakultas_id" id="fakultas" class="form-control">
                                                                 <option value="01">Fakultas Ilmu Pendidikan</option>
@@ -62,10 +88,15 @@
                               <option value="21">Pascasarjana</option>
                               <option value="31">Program Pendidikan Profesi dan Vokasi</option>
                                                     </select>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                        <div class="form-group">
+                                          <label for="negara">Negara Asal</label>
+                                          <input type="hidden" name="negara_id">
+                                          <input type="text" class="form-control" name="negara" id="negara" placeholder="Negara Asal">
+                                        </div>
+                                            {{-- <div class="form-group">
                                                 <label for="jurusan">Jurusan</label>
                                                 <select name="jurusan_id" id="jurusan" class="form-control">
                               <option value="013">Administrasi Pendidikan</option>
@@ -108,24 +139,27 @@
                               <option value="072">Geografi</option>
                               <option value="081">Psikologi</option>
                                                     </select>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label>NIM</label>
                                                 <input name="nim" type="text" class="form-control" placeholder="NIM" value="" >
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-6">
+                                            
+                                        </div>
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Negara Asal</label>
                                                 <input type="hidden" name="negara_id" value="96">
                                                 <input type="text" class="form-control" placeholder="Negara Asal" value="Brunei Darussalam"  name="negara">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         {{-- <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Postal Code</label>
@@ -133,6 +167,34 @@
                                             </div>
                                         </div> --}}
                                     </div>
+                            </div>
+                            <div class="header">
+                              <h4>Kontak</h4>
+                            </div>
+                            <div class="content">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="telp">No. Telp</label>
+                                    <input type="text" name="telp" class="form-control" placeholder="+62 ">
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="telp">Email</label>
+                                    <input type="mail" name="email" class="form-control" placeholder="Alamat Email">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label for="alamat_malang">Alamat di Malang</label>
+                                    <textarea name="alamat_malang" id="alamat_malang" cols="30" rows="10" class="form-control"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              
                             </div>
                             <div class="header">
                                 <h4 class="title">Visa</h4>
@@ -157,8 +219,8 @@
                             </div>
                         <div class="header">
                                 <h4 class="title">Ijin Belajar</h4>
-                            </div>
-                            <div class="content">
+                        </div>
+                        <div class="content">
                                     <div class="row">
                                        
                                         <div class="col-md-8">
@@ -167,7 +229,7 @@
                                                 <input type="file" name="ijin_belajar" class="form-control">
                                             </div>
                                         </div>
-                                         <div class="col-md-4">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Expired</label>
                                                 <input type="date" name="expired_ijin_belajar" class="form-control">
@@ -175,22 +237,32 @@
                                         </div>
                                     </div>
 
-                                     <button type="submit" class="btn btn-info btn-fill pull-right" >Update Profile</button>
+                                    
+                        </div>
+                        <div class="content">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <button type="submit" class="btn btn-info btn-fill pull-right" >Update Profile</button>
                                     <div class="clearfix"></div>
-                                {!! Form::close() !!}                            </div>
+                                {!! Form::close() !!}
+                            </div>
+                            
+                          </div>
+                        </div>
+                         
                         </div>
                     </div>
-                    {{-- <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
                                 <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
                             </div>
                             <div class="content">
                                 <div class="author">
-                                 <input type="file" name="foto" style="    position: absolute;
-    width: 240px;
+                                 <input type="file" name="foto" style="height:120px;position: absolute;
+    width: 130px;
     padding: 5px;
-    cursor: pointer; z-index:1000;top:100px;margin-left:30px;opacity:0.00001">
+    cursor: pointer; z-index:1000;top:55px;margin-left:80px;opacity:0.00001">
                                      <a href="#">
                                     <img class="avatar border-gray" src="{{ url('/assets/img/faces/face-3.jpg') }}" alt="..."/>
                                    
@@ -211,7 +283,7 @@
 
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
             </div>

@@ -4,7 +4,7 @@ namespace simahin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Visa extends Model
+class Dokumen extends Model
 {
     //
 }
