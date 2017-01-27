@@ -6,17 +6,17 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Statistik Mahasiswa</h4>
-                                <p class="category">Berdasarkan Fakultas</p>
+                                <h4 class="title">Jumlah Tamu Internasional</h4>
+                                <p class="category">Berdasarkan Kegiatan</p>
                             </div>
                             <div class="content">
                                 <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Pascasarjana 
-                                        <i class="fa fa-circle text-danger"></i> FS 
-                                        <i class="fa fa-circle text-warning"></i> FIP
+                                        <i class="fa fa-circle text-info"></i> Mahasiswa 
+                                        <i class="fa fa-circle text-danger"></i> Peneliti 
+                                        <i class="fa fa-circle text-warning"></i> Guru
                                     </div>
                                     <hr>
                                     <div class="stats">
@@ -29,20 +29,20 @@
                     <div class="col-md-8">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Total Legalitas Expired</h4>
-                                <p class="category">Pada Tahun 2016</p>
+                                <h4 class="title">Jumlah Tamu Internasional Baru</h4>
+                                <p class="category">2013-2017</p>
                             </div>
                             <div class="content">
                                 <div id="chartActivity" class="ct-chart"></div>
 
                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Ijin Belajar
-                                        <i class="fa fa-circle text-danger"></i> Visa
+                                        <i class="fa fa-circle text-info"></i> Mahasiswa
+                                        <i class="fa fa-circle text-danger"></i> Guru
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-check"></i> Pada tahun 2016
+                                        <i class="fa fa-check"></i> 5 tahun terakhir
                                     </div>
                                 </div>
                             </div>
@@ -70,6 +70,7 @@
                             </div>
                         </div> --}}
                     </div>
+
                 </div>
 
 
@@ -134,5 +135,26 @@
                         </div>
                     </div> --}}
                 </div>
+
+@stop
+
+@section("js")
+
+<script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            // $.notify({
+         //     icon: 'pe-7s-gift',
+         //     message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+
+         //    },{
+         //        type: 'info',
+         //        timer: 4000
+         //    });
+
+        });
+</script>
 
 @stop

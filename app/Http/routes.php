@@ -23,6 +23,8 @@ Route::get("user", "UserController@index");
 Route::get("/user/tambah/", "UserController@tambah");
 Route::get("/user/detail/{id}", "UserController@detail");
 
+Route::get("/notifikasi", "NotifikasiController@index");
+
 Route::auth();
 
 // Route::get('/home', 'HomeController@index');

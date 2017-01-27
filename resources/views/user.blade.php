@@ -13,7 +13,7 @@
                                 @endif
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data [[ user Asing]] <a href="{{ url('/user/tambah') }}" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Baru</a></h4>
+                                <h4 class="title">Data Tamu Internasional <a href="{{ url('/user/tambah') }}" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Baru</a></h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -21,11 +21,10 @@
                                     <thead>
                                         <th>No.</th>
                                     	<th>Name</th>
-                                    	<th>NIM</th>
+                                    	<th>Kegiatan</th>
                                     	<th>Jurusan/Fakultas</th>
                                     	<th>Negara Asal</th>
-                                    	<th>Visa</th>
-                                    	<th>Ijin Belajar</th>
+                                    	<th>Berkas Legalitas</th>
                                     	<th>Action</th>
                                     </thead>
                                     <tbody>
@@ -42,11 +41,10 @@
                                    <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$data_user->nama_depan}} {{$data_user->nama_belakang}}</td>
-                                            <td>{{$data_user->nim}}</td>
+                                            <td>$data_user->tipe_user->nama</td>
                                             <td>Sastra Indonesia/Fakultas Sastra</td>
                                             <td>{{$data_user->negara->nama}}</td>
-                                            <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                            <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
+                                            <td><span class="label label-success"><i class="fa fa-check"></i></td>
                                             <td><a href="{{ url('/user/detail') }}/{{$data_user->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="{{ url('/user/hapus') }}/{{$data_user->id}}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                     </tr> 

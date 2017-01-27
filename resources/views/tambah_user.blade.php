@@ -4,21 +4,23 @@
 <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8">
-                      <ul class="nav nav-pills nav-justified thumbnail">
-                        <li class="active">
-                          <a href="#">
-                            <h4 class="list-group-item-heading">Profil</h4>
+                      <ul class="nav nav-pills nav-justified thumbnail" id="myTab">
+                        <li>
+                          <a href="#biodata" role="tab" data-toggle="tab">
+                            <h4 class="list-group-item-heading">Biodata</h4>
                             <small class="list-group-item-text">Berisi data profil, alamat, dan telepon</small>
                           </a>
                         </li>
-                        <li class="disabled">
-                          <a href="#">
+                        <li>
+                          <a href="#berkas"  role="tab" data-toggle="tab">
                             <h4 class="list-group-item-heading">Berkas Legalitas</h4>
                             <small class="list-group-item-text">Upload scan berkas legalitas</small>
                           </a>
                         </li>
                       </ul>
-                        <div class="card">
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="biodata">
+                          <div class="card">
                             <div class="header">
                                 <h4 class="title">User Baru</h4>
                             </div>
@@ -191,11 +193,28 @@
                                   <div class="form-group">
                                     <label for="alamat_malang">Alamat di Malang</label>
                                     <textarea name="alamat_malang" id="alamat_malang" cols="30" rows="10" class="form-control"></textarea>
+                                    <p class="help-block">Simpan data lalu upload berkas legalitas</p>
                                   </div>
                                 </div>
                               </div>
                               
                             </div>
+
+                        <div class="content">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <button type="submit" class="btn btn-info btn-fill pull-right" >Simpan</button>
+                                    <div class="clearfix"></div>
+                                {!! Form::close() !!}
+                            </div>
+                            
+                          </div>
+                        </div>
+                         
+                        </div>
+                        </div>
+                        <div class="tab-pane" id="berkas">
+                          <div class="card">
                             <div class="header">
                                 <h4 class="title">Visa</h4>
                             </div>
@@ -242,15 +261,18 @@
                         <div class="content">
                           <div class="row">
                             <div class="col-md-12">
-                              <button type="submit" class="btn btn-info btn-fill pull-right" >Update Profile</button>
+                              <button type="submit" class="btn btn-info btn-fill pull-right" >Simpan</button>
                                     <div class="clearfix"></div>
                                 {!! Form::close() !!}
                             </div>
                             
                           </div>
                         </div>
-                         
+                      </div>
+                            
                         </div>
+                      </div>
+                        
                     </div>
                     <div class="col-md-4">
                         <div class="card card-user">
@@ -287,4 +309,21 @@
 
                 </div>
             </div>
+@stop
+
+@section("js")
+<script type="text/javascript">
+ var hash = document.location.hash;
+var prefix = "tab_";
+if (hash) {
+    $('#myTab a[href="'+hash.replace(prefix,"")+'"]').tab('show');
+}else{
+  $("#myTab a[href='#biodata']").tab("show");
+}
+
+// Change hash for page-reload
+$('#myTab a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash.replace("#", "#" + prefix);
+});
+</script>
 @stop

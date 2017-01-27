@@ -70,16 +70,20 @@
             @endif
                     <a href="{{url("/user")}}">
                         <i class="pe-7s-user"></i>
-                        <p>Mahasiswa</p>
+                        <p>Tamu Internasional</p>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
+            @if (Request::is('notifikasi')||Request::is('notifikasi/*'))
+                <li class="active">
+            @else
                 <li>
+            @endif
+                    <a href="{{ url('/notifikasi') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Notifikasi</p>
+                    </a>
+                </li>
+                {{--<li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
                         <p>Typography</p>
@@ -120,6 +124,12 @@
                     <a class="navbar-brand" href="#">Dashboard</a>
                 </div>
                 <div class="collapse navbar-collapse">
+                    <form class="navbar-form navbar-left navbar-search-form" role="search">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input name="q" type="text" value="" class="form-control" placeholder="Cari nama...">
+                        </div>
+                    </form>
                    {{--  <ul class="nav navbar-nav navbar-left">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -244,21 +254,8 @@
 	 {{-- Light Bootstrap Table DEMO methods, don't include it in your project!  --}}
 	<script src="{{ url('/assets/js/demo.js') }}"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
+    @yield("js")
 
-        	demo.initChartist();
-
-        	// $.notify({
-         //    	icon: 'pe-7s-gift',
-         //    	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-         //    },{
-         //        type: 'info',
-         //        timer: 4000
-         //    });
-
-    	});
-	</script>
+	
 
 </html>

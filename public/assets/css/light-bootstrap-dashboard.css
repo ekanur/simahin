@@ -3391,3 +3391,19 @@ body > .navbar-collapse[data-color="purple"]:after {
     -webkit-overflow-scrolling: touch;
   }
 }
+
+.navbar-form .input-group-addon {
+    border-radius: 0;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    color: #E3E3E3;
+    font-size: 16px;
+    padding: 0 7px;
+    border-radius: 4px 0 0 4px;
+}
+
+.list-group-item-unread{
+  background-color: #f2f2f2;
+  color: #eee;
+}
