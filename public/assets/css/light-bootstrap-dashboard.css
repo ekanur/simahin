@@ -3403,7 +3403,42 @@ body > .navbar-collapse[data-color="purple"]:after {
     border-radius: 4px 0 0 4px;
 }
 
-.list-group-item-unread{
+.list-group-item-read{
   background-color: #f2f2f2;
-  color: #eee;
+}
+
+
+.list-group-item{
+  border:none;
+  border-top:1px solid #ededed;
+}
+
+.card .icon-big {
+    font-size: 3.2em;
+    min-height: 64px;
+}
+.card .stats {
+    color: #a9a9a9;
+    font-weight: 300;
+}
+
+.icon-success{
+  color: #5cb85c;
+}
+
+.icon-danger{
+  color: #d9534f;
+}
+
+.icon-warning{
+  color: #f0ad4e;
+}
+
+.number{
+      text-align: right;
+    font-size: 2em;
+}
+
+.main-panel{
+  z-index: 0;
 }

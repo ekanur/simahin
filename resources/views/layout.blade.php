@@ -29,6 +29,8 @@
     <link href="{{url("/assets/css/font-awesome.min.css")}}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{url("/assets/css/pe-icon-7-stroke.css")}}" rel="stylesheet" />
+    <link href="{{url("/assets/css/flag-icon.css")}}" rel="stylesheet" />
+    <link href="{{url("/assets/css/jquery-jvectormap-2.0.3.css")}}" rel="stylesheet" />
 
 </head>
 <body>
@@ -234,6 +236,7 @@
 
     <!--   Core JS Files   -->
     <script src="{{ url('/assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="{{ url('/assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->

@@ -3,6 +3,124 @@
 @section("content")
 	<div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>Tamu internasional baru</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="pe-7s-add-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="number">
+                                            4
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="stats"> 
+                                    Pada 2017
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>Total Tamu Internasional</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="pe-7s-users"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="number">
+                                            79
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="stats"> 
+                                    Status Aktif
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>Berkas Expired</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-danger text-center">
+                                            <i class="pe-7s-copy-file"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="number">
+                                            30
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="stats"> 
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p>Pembaruan Berkas</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="pe-7s-check"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="number">
+                                            17
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <div class="stats"> 
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="header">
@@ -76,6 +194,17 @@
 
 
                 <div class="row">
+                    <div class="col-md-12">
+                    <div id="mapDiagram"  style="height:450px;z-index: 9999"></div>
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Persebaran Negara Asal Tamu Internasional</h4>
+                            </div>
+                            <div class="content">
+                               
+                            </div>
+                        </div>
+                    </div>
 
 
 {{--                     <div class="col-md-6">
@@ -139,7 +268,9 @@
 @stop
 
 @section("js")
-
+<script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
+<script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-world-mill.js') }}"></script>
+<script type="text/javascript" src="{{ url('/assets/js/gdp-data.js') }}"></script>
 <script type="text/javascript">
         $(document).ready(function(){
 
@@ -153,7 +284,7 @@
          //        type: 'info',
          //        timer: 4000
          //    });
-
+            $('#mapDiagram').vectorMap({map: 'world_mill'});
         });
 </script>
 
