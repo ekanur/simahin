@@ -267,6 +267,11 @@
 
 @stop
 
+@section("css")
+    <link href="{{url("/assets/css/flag-icon.css")}}" rel="stylesheet" />
+    <link href="{{url("/assets/css/jquery-jvectormap-2.0.3.css")}}" rel="stylesheet" />
+@stop
+
 @section("js")
 <script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-world-mill.js') }}"></script>

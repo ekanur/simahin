@@ -1893,8 +1893,8 @@ body > .navbar-collapse[data-color="purple"]:after {
   font-weight: 300;
 }
 .card .avatar {
-  width: 30px;
-  height: 30px;
+  width: 120px;
+  height: 120px;
   overflow: hidden;
   border-radius: 50%;
   margin-right: 5px;
@@ -1981,7 +1981,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   position: relative;
   margin-bottom: 15px;
 }
-.card-user .avatar.border-gray {
+.card-user .avatar.border-gray{
   border-color: #EEEEEE;
 }
 .card-user .title {
@@ -3435,10 +3435,57 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 
 .number{
-      text-align: right;
-    font-size: 2em;
+  text-align: right;
+  font-size: 2em;
 }
 
 .main-panel{
   z-index: 0;
+}
+.upload_container{
+  width:90%;
+  height: auto;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0
+}
+
+.upload_container input[type='file']{
+  height:115px;
+  width: 115px;
+  padding: 5px;
+  cursor: pointer;
+  z-index:1000;
+  top:15px;
+  margin:auto;
+  opacity:0.00001
+}
+
+.card .avatar.border-gray{
+  border: #ededed 5px solid;
+  transition: border 0.5s ease;
+} 
+
+.upload_container:hover + .avatar.border-gray{
+  border: #FFA534 5px solid;
+  transition: border 0.5s ease;
+
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus{
+  color:#ffffff;
+  background-color: #359ecf;  
+}
+
+.nav-pills>li.active>a:hover{
+  background-color: #2591c1;
+}
+
+#berkas_legalitas hr{
+  margin:0px;
+  border-top:1px solid #e3e3e3;
+}
+
+#berkas_legalitas .bg-success + hr, #berkas_legalitas .bg-danger + hr{
+  border-top:1px solid white;
 }

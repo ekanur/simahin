@@ -21,9 +21,17 @@ Route::post("/user/tambah", "UserController@add");
 
 Route::get("user", "UserController@index");
 Route::get("/user/tambah/", "UserController@tambah");
-Route::get("/user/detail/{id}", "UserController@detail");
+Route::post("/user/tambah/", "UserController@add");
+Route::get("/user/edit/{id}", "UserController@detail");
+Route::post("/user/simpan_berkas/", "UserController@simpanBerkas");
+Route::post("/user/update_berkas/", "UserController@updateBerkas");
 
 Route::get("/notifikasi", "NotifikasiController@index");
+
+Route::group(["prefix" => "api"], function(){
+	Route::get("negara/{q}", "NegaraController@find");
+	Route::get("fakultas/{id}/jurusan", "FakultasController@getJurusan");
+});
 
 Route::auth();
 

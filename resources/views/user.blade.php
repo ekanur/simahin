@@ -24,7 +24,6 @@
                                     	<th>Kegiatan</th>
                                     	<th>Jurusan/Fakultas</th>
                                     	<th>Negara Asal</th>
-                                    	<th>Berkas Legalitas</th>
                                     	<th>Action</th>
                                     </thead>
                                     <tbody>
@@ -38,14 +37,20 @@
                                         $i=1;
                                     @endphp
                                     @foreach($user as $data_user)
-                                   <tr>
+                                   <tr class="{{ (sizeof($data_user->dokumen)>0 && $dokumen_status[$data_user->id] == 0)? "": "danger" }}">
                                             <td>{{$i++}}</td>
                                             <td>{{$data_user->nama_depan}} {{$data_user->nama_belakang}}</td>
-                                            <td>$data_user->tipe_user->nama</td>
-                                            <td>Sastra Indonesia/Fakultas Sastra</td>
+                                            <td>{{$data_user->tipe_user->nama}}</td>
+                                            <td>{{$data_user->jurusan->nama}}/{{$data_user->jurusan->fakultas->fak_skt}}</td>
                                             <td>{{$data_user->negara->nama}}</td>
-                                            <td><span class="label label-success"><i class="fa fa-check"></i></td>
-                                            <td><a href="{{ url('/user/detail') }}/{{$data_user->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                                            {{-- <td>
+                                                @if(sizeof($data_user->dokumen)>0 && $dokumen_status[$data_user->id] == 0)
+                                                <span class="label label-success"><i class="fa fa-check"></i></span>
+                                                @else
+                                                <span class="label label-danger"><i class="fa fa-info"></i></span>
+                                                @endif
+                                            </td> --}}
+                                            <td><a href="{{ url('/user/edit') }}/{{$data_user->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
                                             <a href="{{ url('/user/hapus') }}/{{$data_user->id}}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
                                     </tr> 
                                     @endforeach
@@ -109,8 +114,7 @@
                                     </tbody>
                                     <tfoot><tr><td colspan="8">
                                     	<strong>Legend </strong><br/>
-                                    	<br/>[ <span class="label label-success"><i class="fa fa-check"></i></span> : Masih Berlaku
-                                    	 ]  [ <span class="label label-warning"><i class="fa fa-exclamation"></i></span> : Berakhir kurang dari 2 bulan ] [ <span class="label label-danger"><i class="fa fa-ban"></i></span> : Expired ]
+                                    	<br/><span class="label label-danger"><i class="fa fa-ban"></i></span> : Berkas Expired, berkas belum lengkap
                                     </td></tr></tfoot>
                                 </table>
 

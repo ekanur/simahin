@@ -17,4 +17,20 @@ class User extends Model
     public function negara(){
         return $this->belongsTo("simahin\Negara");
     }
+
+    public function tipe_user(){
+        return $this->belongsTo("simahin\TipeUser", "tipe");
+    }
+
+    public function fakultas(){
+        return $this->belongsTo("simahin\Fakultas");
+    }
+
+    public function jurusan(){
+        return $this->belongsTo("simahin\Jurusan");
+    }
+
+    public function dokumen(){
+        return $this->hasMany("simahin\Dokumen");
+    }
 }
