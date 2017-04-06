@@ -3,16 +3,15 @@
 namespace simahin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use SoftDeletes;
+    
     protected $table ="user";
     protected $fillable = ["nama_depan", "nama_belakang", "nim", "fakultas_id", "jurusan_id", "negara_id", "foto", "alamat_malang", "telp", "email", "tipe"];
+    protected $dates = ['deleted_at'];
 
     public function negara(){
         return $this->belongsTo("simahin\Negara");

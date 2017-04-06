@@ -19,7 +19,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="number">
-                                            4
+                                            {{$tamu_baru}}
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="number">
-                                            79
+                                            {{$total_tamu}}
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="number">
-                                            30
+                                            {{$berkas_expired}}
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="number">
-                                            17
+                                            {{$pembaruan_berkas}}
                                         </div>
                                     </div>
                                 </div>
@@ -128,17 +128,15 @@
                                 <p class="category">Berdasarkan Kegiatan</p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                <div id="chartTamuBerdasarkanKegiatan" class="ct-chart ct-perfect-fourth"></div>
 
                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Mahasiswa 
-                                        <i class="fa fa-circle text-danger"></i> Peneliti 
-                                        <i class="fa fa-circle text-warning"></i> Guru
+                                       
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-calendar-o"></i> Tahun Akademik 2015-2016
+                                        <i class="fa fa-calendar-o"></i> Tahun Akademik {{date("Y")-1}} - {{date("Y")}}
                                     </div>
                                 </div>
                             </div>
@@ -151,12 +149,15 @@
                                 <p class="category">2013-2017</p>
                             </div>
                             <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
+                                <div id="chartTotalTamu" class="ct-chart"></div>
 
                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Mahasiswa
-                                        <i class="fa fa-circle text-danger"></i> Guru
+                                        <i class="fa fa-circle" style="color:#1DC7EA"></i> Mahasiswa
+                                        <i class="fa fa-circle" style="color:#FB404B"></i> Guru
+                                        <i class="fa fa-circle" style="color:#FFA534"></i> Peneliti
+                                        <i class="fa fa-circle" style="color:#9368E9"></i> Magang
+                                        <i class="fa fa-circle" style="color:#87CB16"></i> Lain-lain
                                     </div>
                                     <hr>
                                     <div class="stats">
@@ -268,18 +269,158 @@
 @stop
 
 @section("css")
-    <link href="{{url("/assets/css/flag-icon.css")}}" rel="stylesheet" />
+    {{-- <link href="{{url("/assets/css/flag-icon.css")}}" rel="stylesheet" /> --}}
     <link href="{{url("/assets/css/jquery-jvectormap-2.0.3.css")}}" rel="stylesheet" />
 @stop
 
 @section("js")
+<script type="text/javascript" src="{{ url('/assets/js/chartist-plugin-pointlabels.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-world-mill.js') }}"></script>
 <script type="text/javascript" src="{{ url('/assets/js/gdp-data.js') }}"></script>
 <script type="text/javascript">
-        $(document).ready(function(){
 
-            demo.initChartist();
+    fetch("{{ url('/api/user/kegiatan') }}").then(
+        function(response){
+            return response.json();
+        }
+        ).then(function(result){
+            var total_tamu = [];
+            var label = [];
+            $.each(result, function(key, value){
+                    label.push(key+": "+value);
+                    total_tamu.push(value);
+                });
+            var data = {
+                labels :label,
+                series : total_tamu
+            };
+
+            console.log(data);
+
+            var options = {
+              labelInterpolationFnc: function(value) {
+                return value
+              }
+            };
+
+            var responsiveOptions = [
+              ['screen and (min-width: 640px)', {
+                chartPadding: 5,
+                labelOffset: 0,
+                labelDirection: 'explode',
+                labelInterpolationFnc: function(value) {
+                  return value;
+                }
+              }],
+              ['screen and (min-width: 1024px)', {
+                labelOffset: 0,
+                chartPadding: 5
+              }]
+            ];
+
+           var Chart = new Chartist.Pie('#chartTamuBerdasarkanKegiatan', data, options, responsiveOptions);
+        });
+
+    fetch("{{ url('/api/user/baru') }}").then(
+            function(response){
+                return response.json();
+            }    
+        ).then(
+            function(ids){
+                            // console.log(Object.keys(ids[0]));
+                var statistic =[];
+                 $.each(ids[0], function(key, value){
+                    statistic.push({ name:key, data:value}); 
+                });
+
+                            
+                var data = {
+                        // labels : Object.keys(ids[Object.keys(ids)[0]])[0],
+                        labels : [@for ($i = intval(date("Y")-4); $i <= date("Y") ; $i++)
+                            {{$i}}
+                            @if ($i != date("Y"))
+                                ,
+                            @endif
+                            
+                        @endfor],
+                        // series : ids.map(function(x){
+                        //     var y=[];
+                        //     var i = 0;
+                        //     for(var property in x){
+                        //         if(x.hasOwnProperty(property)){
+                        //             y[i++] = x[property];
+                        //         }
+                        //     }
+
+                        //     return y;
+                        // })[0],
+                        series : statistic 
+                };
+
+                // console.log(data.series);
+
+                var options = {
+                  lineSmooth: true,
+                  showArea: false,
+                  height: "285px",
+                  axisX: {
+                    showGrid: true,
+                  },
+                  showLine: true,
+                  fullWidth:true,
+                  chartPadding: {right: 40,top: 50},
+                  showPoint: true,
+                  plugins : [Chartist.plugins.ctPointLabels({
+                    textAnchor: 'middle'
+                  })]
+                };
+                
+                // var responsive = [
+                //   ['screen and (max-width: 640px)', {
+                //     axisX: {
+                //       labelInterpolationFnc: function (value) {
+                //         return value[0];
+                //       }
+                //     }
+                //   }]
+                // ];
+
+                var Chart = new Chartist.Line('#chartTotalTamu', data, options);               
+            }
+        );
+        $(document).ready(function(){
+        // var dataSales = {
+        //   labels: [ '2013', '2014', '2015', '2016', '2017'],
+        //   series: [
+        //      [287, 385, 490, 492,  944],
+        //     [67, 437, 539, 342, 544],
+        //     [23, 113, 67,307, 439]
+        //   ]
+        // };
+        
+        // var optionsSales = {
+        //   lineSmooth: true,
+        //   showArea: false,
+        //   height: "245px",
+        //   axisX: {
+        //     showGrid: true,
+        //   },
+        //   showLine: true,
+        //   showPoint: true,
+        // };
+        
+        // var responsiveSales = [
+        //   ['screen and (max-width: 640px)', {
+        //     axisX: {
+        //       labelInterpolationFnc: function (value) {
+        //         return value[0];
+        //       }
+        //     }
+        //   }]
+        // ];
+        //     Chartist.Line('#chartTotalTamu', dataSales, optionsSales, responsiveSales);
+            // demo.initChartist();
 
             // $.notify({
          //     icon: 'pe-7s-gift',

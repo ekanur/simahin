@@ -1,5 +1,10 @@
 @extends("layout")
 
+@section("css")
+<link rel="stylesheet" href="{{url("/assets/css/dataTables.bootstrap.min.css")}}">
+{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css"> --}}
+@endsection
+
 @section("content")
 <div class="container-fluid">
                 <div class="row">
@@ -17,14 +22,17 @@
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
+                                <table class="table table-hover table-striped" id="userTable">
                                     <thead>
-                                        <th>No.</th>
-                                    	<th>Name</th>
-                                    	<th>Kegiatan</th>
-                                    	<th>Jurusan/Fakultas</th>
-                                    	<th>Negara Asal</th>
-                                    	<th>Action</th>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Name</th>
+                                            <th>Kegiatan</th>
+                                            <th>Jurusan/Fakultas</th>
+                                            <th>Negara Asal</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        
                                     </thead>
                                     <tbody>
                                     @if(is_null($user))
@@ -51,71 +59,16 @@
                                                 @endif
                                             </td> --}}
                                             <td><a href="{{ url('/user/edit') }}/{{$data_user->id}}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/user/hapus') }}/{{$data_user->id}}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
+                                            <a href="#" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#confirmDelete" data-name="{{$data_user->nama_depan}} {{$data_user->nama_belakang}}"><i class="fa fa-times"></i></a></td>
                                     </tr> 
                                     @endforeach
                                     @endif   
-                                        {{--  <tr class="danger">
-                                        	<td>2</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>1011345849535</td>
-                                        	<td>Sastra Indonesia/Fakultas Sastra</td>
-                                        	<td>Prancis</td>
-                                        	<td><span class="label label-danger"><i class="fa fa-ban"></i></span></td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>3</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>1011345849535</td>
-                                        	<td>Sastra Indonesia/Fakultas Sastra</td>
-                                        	<td>Prancis</td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                        <tr class="warning">
-                                        	<td>4</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>1011345849535</td>
-                                        	<td>Sastra Indonesia/Fakultas Sastra</td>
-                                        	<td>Prancis</td>
-                                        	<td><span class="label label-warning"><i class="fa fa-exclamation"></i></span></td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr> 
-                                        <tr class="danger">
-                                        	<td>5</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>1011345849535</td>
-                                        	<td>Sastra Indonesia/Fakultas Sastra</td>
-                                        	<td>Prancis</td>
-                                        	<td><span class="label label-warning"><i class="fa fa-exclamation"></i></span></td>
-                                        	<td><span class="label label-danger"><i class="fa fa-ban"></i></span></td>
-                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr> 
-                                        <tr>
-                                        	<td>6</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>1011345849535</td>
-                                        	<td>Sastra Indonesia/Fakultas Sastra</td>
-                                        	<td>Prancis</td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><span class="label label-success"><i class="fa fa-check"></i></span></td>
-                                        	<td><a href="{{ url('/user/detail') }}" class="btn btn-info btn-simple btn-xs"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ url('/user/detail') }}" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a></td>
-                                        </tr> --}}
-                                        
+                                       
                                     </tbody>
-                                    <tfoot><tr><td colspan="8">
+                                    {{-- <tfoot><tr><td colspan="8">
                                     	<strong>Legend </strong><br/>
-                                    	<br/><span class="label label-danger"><i class="fa fa-ban"></i></span> : Berkas Expired, berkas belum lengkap
-                                    </td></tr></tfoot>
+                                    	<br/><span class="label label-danger">&nbsp;</span> : Berkas Expired, berkas belum lengkap
+                                    </td></tr></tfoot> --}}
                                 </table>
 
                             </div>
@@ -123,4 +76,38 @@
                     </div>
                 </div>
             </div>
-@stop
+
+            
+@endsection
+
+@section("modal")
+<div id="confirmDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">Hapus Tamu Internasional</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Anda yakin akan menghapus data tamu <strong id="#nama"></strong> ?
+                                                
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href=""  class="btn btn-secondary waves-effect" data-dismiss="modal">Tidak</a>
+                                            <a href="{{ url('/user/hapus') }}/{{$data_user->id}}" class="btn btn-success waves-effect waves-light">Ya</a>
+                                        </div>
+                                
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>  
+@endsection
+
+@section("js")
+    <script type="text/javascript" src="{{ url('/assets/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('/assets/js/dataTables.bootstrap.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $("#userTable").DataTable();
+    });
+</script>
+@endsection

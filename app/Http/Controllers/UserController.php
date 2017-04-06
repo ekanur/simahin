@@ -271,4 +271,15 @@ class UserController extends Controller
         $avatar->save($save_path . $file_name);
         return $file_name;
     }
+
+
+    public function hapus($id){
+        $user = User::find($id);
+        $user->delete();
+        $dokumen = Dokumen::find($id);
+        $dokumen->delete();
+
+        \Session::flash("flash_message", "Berhasil menghapus tamu internasional");
+            return redirect()->back();
+    }
 }

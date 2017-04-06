@@ -13,6 +13,7 @@ class NegaraController extends Controller
 
     public function find($q){
     	$negara = Negara::where("nama", "ILIKE", "%".strtoupper($q)."%")->get();
+    	// dd($negara);
     	return response()->json($negara);
     }
 }

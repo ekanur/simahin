@@ -2010,7 +2010,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 
 .ct-label {
-  fill: rgba(0, 0, 0, 0.4);
+  fill: rgba(33, 26, 26, 0.74);
   color: rgba(0, 0, 0, 0.4);
   font-size: 1.3rem;
   line-height: 1;
@@ -3489,3 +3489,23 @@ body > .navbar-collapse[data-color="purple"]:after {
 #berkas_legalitas .bg-success + hr, #berkas_legalitas .bg-danger + hr{
   border-top:1px solid white;
 }
+
+input[name='q']{
+  color:#3a3a3a !important;
+  background-color: #efefef !important;
+  width: 420px !important;
+  height: 40px !important;
+  padding:5px !important;
+  border-radius:5px !important;
+}
+
+input[name="q"]:focus{
+  box-shadow: 0.84px 0.5px 2px 0.5px #c3c3c3 inset;
+}
+
+.navbar-form{
+  margin-top:15px;
+}
+
+/*chart line style*/
+
