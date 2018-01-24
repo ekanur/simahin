@@ -15,28 +15,31 @@
 //     return view('index');
 // });
 
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index');
 Route::get("/", "DashboardController@index");
 Route::get("/index", "DashboardController@index");
-Route::post("/user/tambah", "UserController@add");
+Route::post("/tamu_internasional/tambah", "TamuInternasionalController@add");
 
-Route::get("user", "UserController@index");
-Route::get("/user/tambah/", "UserController@tambah");
-Route::post("/user/tambah/", "UserController@add");
-Route::get("/user/edit/{id}", "UserController@detail");
-Route::get("/user/hapus/{id}", "UserController@hapus");
-Route::post("/user/simpan_berkas/", "UserController@simpanBerkas");
-Route::post("/user/update_berkas/", "UserController@updateBerkas");
+Route::get("tamu_internasional", "TamuInternasionalController@index");
+Route::get("/tamu_internasional/tambah/", "TamuInternasionalController@tambah");
+Route::post("/tamu_internasional/tambah/", "TamuInternasionalController@add");
+Route::get("/tamu_internasional/edit/{id}", "TamuInternasionalController@detail");
+Route::get("/tamu_internasional/hapus/{id}", "TamuInternasionalController@hapus");
+Route::post("/tamu_internasional/simpan_berkas/", "TamuInternasionalController@simpanBerkas");
+Route::post("/tamu_internasional/update_berkas/", "TamuInternasionalController@updateBerkas");
 
 Route::get("/notifikasi", "NotifikasiController@index");
 
 Route::group(["prefix" => "api"], function(){
 	Route::get("negara/{q}", "NegaraController@find");
 	Route::get("fakultas/{id}/jurusan", "FakultasController@getJurusan");
-	Route::get("user/baru", "DashboardController@totalUserBaru");
-	Route::get("user/kegiatan", "DashboardController@totalUserPerKegiatan");
-	Route::get("user/negara", "DashboardController@totalUserPerNegara");
+	Route::get("tamu_internasional/baru", "DashboardController@totalTamuInternasionalBaru");
+	Route::get("tamu_internasional/kegiatan", "DashboardController@totalTamuInternasionalPerKegiatan");
+	Route::get("tamu_internasional/negara", "DashboardController@totalTamuInternasionalPerNegara");
 });
 
-Route::auth();
+// Route::auth();
 
 // Route::get('/home', 'HomeController@index');

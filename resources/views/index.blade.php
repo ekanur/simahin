@@ -196,7 +196,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                    <div id="mapDiagram"  style="height:450px;z-index: 9999"></div>
+                    <div id="mapDiagram"  style="height:450px;z-index: 9999;width: 100%"></div>
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Persebaran Negara Asal Tamu Internasional</h4>
@@ -278,9 +278,10 @@
 <script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('/assets/js/jquery-jvectormap-world-mill.js') }}"></script>
 <script type="text/javascript" src="{{ url('/assets/js/gdp-data.js') }}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
-    fetch("{{ url('/api/user/kegiatan') }}").then(
+    fetch("{{ url('/api/tamu_internasional/kegiatan') }}").then(
         function(response){
             return response.json();
         }
@@ -322,7 +323,7 @@
            var Chart = new Chartist.Pie('#chartTamuBerdasarkanKegiatan', data, options, responsiveOptions);
         });
 
-    fetch("{{ url('/api/user/baru') }}").then(
+    fetch("{{ url('/api/tamu_internasional/baru') }}").then(
             function(response){
                 return response.json();
             }    
@@ -390,47 +391,26 @@
             }
         );
         $(document).ready(function(){
-        // var dataSales = {
-        //   labels: [ '2013', '2014', '2015', '2016', '2017'],
-        //   series: [
-        //      [287, 385, 490, 492,  944],
-        //     [67, 437, 539, 342, 544],
-        //     [23, 113, 67,307, 439]
-        //   ]
-        // };
-        
-        // var optionsSales = {
-        //   lineSmooth: true,
-        //   showArea: false,
-        //   height: "245px",
-        //   axisX: {
-        //     showGrid: true,
-        //   },
-        //   showLine: true,
-        //   showPoint: true,
-        // };
-        
-        // var responsiveSales = [
-        //   ['screen and (max-width: 640px)', {
-        //     axisX: {
-        //       labelInterpolationFnc: function (value) {
-        //         return value[0];
-        //       }
-        //     }
-        //   }]
-        // ];
-        //     Chartist.Line('#chartTotalTamu', dataSales, optionsSales, responsiveSales);
-            // demo.initChartist();
+            google.charts.load('current', {'packages':['geochart']});
+            google.charts.setOnLoadCallback(drawRegionsMap);
 
-            // $.notify({
-         //     icon: 'pe-7s-gift',
-         //     message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            function drawRegionsMap(){
+                var data = google.visualization.arrayToDataTable([
+                        ["Negara", "Total"],
+                        ['Germany', 200],
+                        ['United States', 300],
+                        ['Brazil', 400],
+                        ['Canada', 500],
+                        ['France', 600],
+                        ['RU', 700]
+                    ]);
 
-         //    },{
-         //        type: 'info',
-         //        timer: 4000
-         //    });
-            $('#mapDiagram').vectorMap({map: 'world_mill'});
+                var options = {};
+                var chart = new google.visualization.GeoChart(document.getElementById("mapDiagram"));
+
+                chart.draw(data, options);
+            }
+            // $('#mapDiagram').vectorMap({map: 'world_mill'});
         });
 </script>
 

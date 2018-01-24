@@ -54,7 +54,7 @@
                             <span class="alert alert-default">{{session('flash_message')}}</span>
                             @endif --}}
                             <div class="header">
-                              @if(isset($user))
+                              @if(isset($tamu_internasional))
                                 <h4 class="title">Edit User</h4>
                               @else
                                 <h4 class="title">User Baru</h4>
@@ -62,8 +62,8 @@
                             </div>
                             <div class="content">
                                 {!! Form::open(array("url" => "/user/tambah", 'class'=>'', 'id'=>'tambah_user', 'role'=>'form', 'files'=>true))!!}
-                                <input type="hidden" name="id" value="{{(isset($user))? $user->id: null}}">
-                                <input type="hidden" name="foto_lama" value="{{(isset($user))? $user->foto: null}}">
+                                <input type="hidden" name="id" value="{{(isset($tamu_internasional))? $tamu_internasional->id: null}}">
+                                <input type="hidden" name="foto_lama" value="{{(isset($tamu_internasional))? $tamu_internasional->foto: null}}">
                                 <input type="hidden" name="step" value="biodata">
                                     {{-- <div class="row">
                                         <div class="col-md-5">
@@ -96,7 +96,7 @@
                                            
                                                
                                               
-                                              <img class="avatar border-gray" src="{{ (isset($user->foto))? url('uploads/user/')."/".$user->foto : url('uploads/user/default.jpeg') }}" alt="{{ (isset($user))? $user->nama_depan." ".$user->nama_belakang : "Pilih file foto profil" }}">
+                                              <img class="avatar border-gray" src="{{ (isset($tamu_internasional->foto))? url('uploads/user/')."/".$tamu_internasional->foto : url('uploads/user/default.jpeg') }}" alt="{{ (isset($tamu_internasional))? $tamu_internasional->nama_depan." ".$tamu_internasional->nama_belakang : "Pilih file foto profil" }}">
                                               
                                               <h6 class="title text-center" style="margin-top: 10px">Upload foto</h6>
                                           </div>
@@ -104,11 +104,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nama Depan <span class="text-danger">*</span></label>
-                                                <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan" value="{{(isset($user->nama_depan))? $user->nama_depan : old('nama_depan')}}" >
+                                                <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan" value="{{(isset($tamu_internasional->nama_depan))? $tamu_internasional->nama_depan : old('nama_depan')}}" >
                                             </div>
                                             <div class="form-group">
                                             <label>Nama Belakang <span class="text-danger">*</span></label>
-                                                <input name="nama_belakang" type="text" class="form-control" placeholder="Nama Belakang" value="{{(isset($user->nama_belakang))? $user->nama_belakang : old('nama_belakang')}}" >
+                                                <input name="nama_belakang" type="text" class="form-control" placeholder="Nama Belakang" value="{{(isset($tamu_internasional->nama_belakang))? $tamu_internasional->nama_belakang : old('nama_belakang')}}" >
                                                 
                                             </div>
                                         </div>
@@ -120,12 +120,12 @@
                                             <div class="form-group">
                                                 <label>Jenis Kegiatan <span class="text-danger">*</span></label>
                                                 <select name="tipe_user" id="" class="form-control">
-                                                @if (isset($user->tipe))
-                                                  @foreach($tipe_user as $jenis_kegiatan)
-                                                    <option value="{{$jenis_kegiatan->id}}" {{($user->tipe == $jenis_kegiatan->id)? 'selected' : null}}>{{$jenis_kegiatan->nama}}</option>
+                                                @if (isset($tamu_internasional->tipe))
+                                                  @foreach($tipe_kegiatan as $jenis_kegiatan)
+                                                    <option value="{{$jenis_kegiatan->id}}" {{($tamu_internasional->tipe == $jenis_kegiatan->id)? 'selected' : null}}>{{$jenis_kegiatan->nama}}</option>
                                                   @endforeach
                                                 @else
-                                                  @foreach($tipe_user as $jenis_kegiatan)
+                                                  @foreach($tipe_kegiatan as $jenis_kegiatan)
                                                     <option value="{{$jenis_kegiatan->id}}">{{$jenis_kegiatan->nama}}</option>
                                                   @endforeach
                                                 @endif
@@ -137,8 +137,8 @@
                                         <div class="col-md-6">
                                         <div class="form-group">
                                           <label for="negara">Negara Asal <span class="text-danger">*</span></label>
-                                          <input type="hidden" name="negara_id" value="{{(isset($user->negara_id))? $user->negara_id : old('negara_id')}}">
-                                          <input type="text" class="form-control" name="negara" id="negara" placeholder="Negara Asal" autocomplete="off" value="{{(isset($user->negara->nama))? $user->negara->nama : old('negara')}}">
+                                          <input type="hidden" name="negara_id" value="{{(isset($tamu_internasional->negara_id))? $tamu_internasional->negara_id : old('negara_id')}}">
+                                          <input type="text" class="form-control" name="negara" id="negara" placeholder="Negara Asal" autocomplete="off" value="{{(isset($tamu_internasional->negara->nama))? $tamu_internasional->negara->nama : old('negara')}}">
                                         </div>
                                         </div>
                                     </div>
@@ -154,13 +154,13 @@
                                             <div class="form-group">
                                                 <label>Fakultas <span class="text-danger">*</span></label>
                                                 <select name="fakultas_id" id="fakultas" class="form-control">
-                                                @if(!isset($user))
+                                                @if(!isset($tamu_internasional))
                                                  @foreach($fakultas as $data_fakultas)
                                                     <option value="{{$data_fakultas->id}}">{{$data_fakultas->fak_nm}}</option>
                                                   @endforeach
                                                 @else
                                                   @foreach($fakultas as $data_fakultas)
-                                                    <option value="{{$data_fakultas->id}}" {{($data_fakultas->id == $user->fakultas->id)? 'selected' :''}}>{{$data_fakultas->fak_nm}}</option>
+                                                    <option value="{{$data_fakultas->id}}" {{($data_fakultas->id == $tamu_internasional->fakultas->id)? 'selected' :''}}>{{$data_fakultas->fak_nm}}</option>
                                                   @endforeach
                                                 @endif
                                                 </select>
@@ -170,9 +170,9 @@
                                             <div class="form-group">
                                                 <label>Jurusan <span class="text-danger">*</span></label>
                                                 <select name="jurusan_id" id="jurusan" class="form-control">
-                                                @if(isset($user))
+                                                @if(isset($tamu_internasional))
 
-                                                <option value="{{$user->jurusan->id}}" id="help_jurusan">{{$user->jurusan->nama}}</option>
+                                                <option value="{{$tamu_internasional->jurusan->id}}" id="help_jurusan">{{$tamu_internasional->jurusan->nama}}</option>
                                                 @else
                                                 @endif
                                                   <option value="" id="help_jurusan">Pilih Fakultas dahulu</option>
@@ -202,13 +202,13 @@
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="telp">No. Telp</label>
-                                    <input type="text" name="telp" class="form-control" placeholder="+62 " value="{{(isset($user->telp))? $user->telp : old('telp')}}">
+                                    <input type="text" name="telp" class="form-control" placeholder="+62 " value="{{(isset($tamu_internasional->telp))? $tamu_internasional->telp : old('telp')}}">
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="telp">Email <span class="text-danger">*</span></label>
-                                    <input type="mail" name="email" class="form-control" placeholder="Alamat Email" value="{{(isset($user->email))? $user->email : old('email')}}">
+                                    <input type="mail" name="email" class="form-control" placeholder="Alamat Email" value="{{(isset($tamu_internasional->email))? $tamu_internasional->email : old('email')}}">
                                   </div>
                                 </div>
                               </div>
@@ -216,7 +216,7 @@
                                 <div class="col-md-12">
                                   <div class="form-group">
                                     <label for="alamat_malang">Alamat di Malang <span class="text-danger">*</span></label>
-                                    <textarea name="alamat_malang" id="alamat_malang" cols="30" rows="10" class="form-control">{{(isset($user->alamat_malang))? $user->alamat_malang : old('alamat_malang')}}</textarea>
+                                    <textarea name="alamat_malang" id="alamat_malang" cols="30" rows="10" class="form-control">{{(isset($tamu_internasional->alamat_malang))? $tamu_internasional->alamat_malang : old('alamat_malang')}}</textarea>
                                     <p class="help-block">Simpan data lalu upload berkas legalitas</p>
                                   </div>
                                 </div>
@@ -240,11 +240,11 @@
                         </div>
                         <div class="tab-pane" id="berkas">
 
-                        @if(isset($user))
+                        @if(isset($tamu_internasional))
                         @if(sizeof($dokumen) > 0)
                         {!! Form::open(array("url" => "/user/update_berkas", 'class'=>'', 'id'=>'berkas_legalitas', 'role'=>'form', 'files'=>true))!!}
                           <input type="hidden" name="step" value="update_berkas">
-                          {{-- @if(isset($user->dokumen)) --}}
+                          {{-- @if(isset($tamu_internasional->dokumen)) --}}
                           {{-- untuk menghapus file lama --}}
                             @foreach($dokumen as $key => $value)
                                 <input type="hidden" name="{{ $key }}" value="{{ $value['scan_file'] }}">
@@ -255,8 +255,8 @@
                           {!! Form::open(array("url" => "/user/simpan_berkas", 'class'=>'', 'id'=>'berkas_legalitas', 'role'=>'form', 'files'=>true))!!} 
                           <input type="hidden" name="step" value="upload_berkas">
                         @endif
-                          <input type="hidden" name="tipe_user" value="{{ $user->tipe }}">
-                          <input type="hidden" name="user_id" value="{{$user->id}}">
+                          <input type="hidden" name="tipe_user" value="{{ $tamu_internasional->tipe }}">
+                          <input type="hidden" name="user_id" value="{{$tamu_internasional->id}}">
                         @endif
                         
                        
@@ -352,8 +352,8 @@
                                     
                         </div>
                         <hr>
-                        @if(isset($user))
-                          @if($user->tipe == 2)
+                        @if(isset($tamu_internasional))
+                          @if($tamu_internasional->tipe == 2)
                         <div class="header imta">
                                 <h4 class="title">4. Ijin Menggunakan Tenaga Asing (IMTA) <small>Bagi Guru Internasional</small><span class="pull-right">
                                   @if(isset($dokumen['imta']['scan_file']))
@@ -385,7 +385,7 @@
                         </div>
                         <hr>
 
-                          @elseif($user->tipe == 1)
+                          @elseif($tamu_internasional->tipe == 1)
                         <div class="header ijin_belajar">
                                 <h4 class="title">4. Ijin Belajar <small>Bagi Mahasiswa Internasional</small><span class="pull-right">
                                   @if(isset($dokumen['ijin_belajar']['scan_file']))
@@ -422,7 +422,7 @@
                           <div class="row">
                             <div class="col-md-12">
                             <span>Tipe File: .jpg, .jpeg, .png | Max size : 2MB</span>
-                              <button type="submit" class="btn  {{(isset($user))? "btn-info" : "btn-default"}} btn-fill pull-right" {{(isset($user))? null : "disabled='true'"}} >{{(isset($user))? "Upload" : "Simpan profil dahulu"}}</button>
+                              <button type="submit" class="btn  {{(isset($tamu_internasional))? "btn-info" : "btn-default"}} btn-fill pull-right" {{(isset($tamu_internasional))? null : "disabled='true'"}} >{{(isset($tamu_internasional))? "Upload" : "Simpan profil dahulu"}}</button>
                                     <div class="clearfix"></div>
                                 
                             </div>
@@ -480,9 +480,9 @@
 @section("js")
 <script type="text/javascript" src="{{ url('/assets/js/jquery.easy-autocomplete.min.js') }}"></script>
 <script type="text/javascript">
-@if(isset($user))
-@if(sizeof($user->dokumen) > 0)
-  @foreach ($user->dokumen as $dokumen)
+@if(isset($tamu_internasional))
+@if(sizeof($tamu_internasional->dokumen) > 0)
+  @foreach ($tamu_internasional->dokumen as $dokumen)
     @if($dokumen->expired_on < date("Y-m-d"))
     $(".{{ strtolower($dokumen->kategori_dokumen->singkatan) }}").addClass("bg-danger");
     @else

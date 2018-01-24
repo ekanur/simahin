@@ -69,12 +69,12 @@
             @else
                 <li>
             @endif
-                    <a href="{{url("/user")}}">
+                    <a href="{{url("/tamu_internasional")}}">
                         <i class="pe-7s-user"></i>
                         <p>Tamu Internasional</p>
                     </a>
                 </li>
-            @if (Request::is('notifikasi')||Request::is('notifikasi/*'))
+           {{--  @if (Request::is('notifikasi')||Request::is('notifikasi/*'))
                 <li class="active">
             @else
                 <li>
@@ -83,7 +83,7 @@
                         <i class="pe-7s-note2"></i>
                         <p>Notifikasi</p>
                     </a>
-                </li>
+                </li> --}}
                 {{--<li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>

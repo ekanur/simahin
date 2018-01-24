@@ -3,23 +3,23 @@
 namespace simahin\Http\Controllers;
 
 use Illuminate\Http\Request;
-use simahin\User;
+use simahin\TamuInternasional;
 use simahin\Dokumen;
-use simahin\TipeUser;
+use simahin\TipeKegiatan;
 use simahin\Fakultas;
 use simahin\KategoriDokumen;
 use Validator;
 use Intervention\Image\Facades\Image;
 
 
-class UserController extends Controller
+class TamuInternasionalController extends Controller
 {
     public function index(){
-        $user = User::with("negara", "tipe_user", "dokumen.kategori_dokumen", "jurusan.fakultas")->get();
-    	// $user = Mahasiswa::all();
-        // dd($user);
+        $tamu_internasional = TamuInternasional::with("negara", "tipe_kegiatan", "dokumen.kategori_dokumen", "jurusan.fakultas")->get();
+    	// $tamu_internasional = Mahasiswa::all();
+        // dd($tamu_internasional);
         $dokumen_status = array();
-        foreach ($user as $data_user) {
+        foreach ($tamu_internasional as $data_user) {
             $total_expired = 0;
             foreach ($data_user->dokumen as $data_dokumen) {
                  if($data_dokumen->expired_on < date("Y-m-d")){
@@ -31,14 +31,14 @@ class UserController extends Controller
 
         // dd($dokumen_status);
 
-        return view("user", compact("user", "dokumen_status"));
+        return view("user", compact("tamu_internasional", "dokumen_status"));
     }
 
     public function tambah(){
-        $tipe_user = TipeUser::all();
+        $tipe_kegiatan = TipeKegiatan::all();
         $fakultas = Fakultas::where("id", "!=", "00")->get();
 
-    	return view("tambah_user", compact("tipe_user", "fakultas"));
+    	return view("tambah_user", compact("tipe_kegiatan", "fakultas"));
     }
 
     public function add(Request $request){
@@ -53,26 +53,26 @@ class UserController extends Controller
         }
 
         if (null == $request->id) {
-            $user = new User;
+            $tamu_internasional = new TamuInternasional;
         }else{
-            $user = User::findOrFail($request->id);
+            $tamu_internasional = TamuInternasional::findOrFail($request->id);
         }
-        // $user->nim = $request->nim;
-        $user->nama_depan= $request->nama_depan;
-        $user->nama_belakang = $request->nama_belakang;
-        $user->fakultas_id = $request->fakultas_id;
-        $user->jurusan_id = $request->jurusan_id;
-        $user->negara_id = $request->negara_id;
-        $user->telp = $request->telp;
-        $user->tipe = $request->tipe_user;
-        $user->email = $request->email;
-        $user->alamat_malang = $request->alamat_malang;
-        $user->foto = $this->uploadFile($request);
+        // $tamu_internasional->nim = $request->nim;
+        $tamu_internasional->nama_depan= $request->nama_depan;
+        $tamu_internasional->nama_belakang = $request->nama_belakang;
+        $tamu_internasional->fakultas_id = $request->fakultas_id;
+        $tamu_internasional->jurusan_id = $request->jurusan_id;
+        $tamu_internasional->negara_id = $request->negara_id;
+        $tamu_internasional->telp = $request->telp;
+        $tamu_internasional->tipe = $request->tipe_user;
+        $tamu_internasional->email = $request->email;
+        $tamu_internasional->alamat_malang = $request->alamat_malang;
+        $tamu_internasional->foto = $this->uploadFile($request);
 
-        if ($user->save()) {
+        if ($tamu_internasional->save()) {
 
             \Session::flash("flash_message", "Profile berhasil dibuat, silakan upload berkas legalitas.");
-            return redirect("/user/edit/".$user->id."#tab_berkas");
+            return redirect("/user/edit/".$tamu_internasional->id."#tab_berkas");
         }else{
             \Session::flash("flash_message", "Terjadi kesalahan. Silakan coba lagi");
             return redirect()->back();
@@ -120,9 +120,9 @@ class UserController extends Controller
         return redirect("/user/edit/".$request->user_id."#tab_berkas");
     }
 
-    public function uploadBerkas($tipe_berkas, $user_id, $file){
+    public function uploadBerkas($tipe_berkas, $tamu_internasional_id, $file){
         $save_path = public_path("uploads/berkas/");
-        $file_name = strrev(substr(md5($user_id), 0,15))."_".$tipe_berkas."_".time().".jpeg";
+        $file_name = strrev(substr(md5($tamu_internasional_id), 0,15))."_".$tipe_berkas."_".time().".jpeg";
         $avatar = Image::make($file);
         $avatar->save($save_path . $file_name);
         return $file_name;
@@ -177,19 +177,19 @@ class UserController extends Controller
     }
 
     public function detail($id){
-        $user = User::with("fakultas", "jurusan", "negara", "tipe_user", "dokumen.kategori_dokumen")->where('id', $id)->firstOrFail();
-        // dd($user->dokumen);
+        $tamu_internasional = TamuInternasional::with("fakultas", "jurusan", "negara", "tipe_kegiatan", "dokumen.kategori_dokumen")->where('id', $id)->firstOrFail();
+        // dd($tamu_internasional->dokumen);
         $dokumen = array();
-        if (sizeof($user->dokumen)>0) {
-            foreach ($user->dokumen as $user_dokumen) {
-            $dokumen[strtolower($user_dokumen->kategori_dokumen->singkatan)] = array("scan_file"=>$user_dokumen->scan_file, "expired_on"=>$user_dokumen->expired_on);
+        if (sizeof($tamu_internasional->dokumen)>0) {
+            foreach ($tamu_internasional->dokumen as $tamu_internasional_dokumen) {
+            $dokumen[strtolower($tamu_internasional_dokumen->kategori_dokumen->singkatan)] = array("scan_file"=>$tamu_internasional_dokumen->scan_file, "expired_on"=>$tamu_internasional_dokumen->expired_on);
             }
 
             // dd($dokumen);
         }
-        $tipe_user = TipeUser::all();
+        $tipe_kegiatan = TipeKegiatan::all();
         $fakultas = Fakultas::where("id", "!=", "00")->get();
-    	return view("tambah_user", compact('user', "tipe_user", "fakultas", "dokumen"));
+    	return view("tambah_user", compact('tamu_internasional', "tipe_kegiatan", "fakultas", "dokumen"));
     }
 
     public function validator(Request $request){
@@ -274,8 +274,8 @@ class UserController extends Controller
 
 
     public function hapus($id){
-        $user = User::find($id);
-        $user->delete();
+        $tamu_internasional = User::find($id);
+        $tamu_internasional->delete();
         $dokumen = Dokumen::find($id);
         $dokumen->delete();
 

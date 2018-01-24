@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use simahin\Http\Requests;
 
-use simahin\User;
+use simahin\TamuInternasional;
 use simahin\Dokumen;
-use simahin\TipeUser;
+use simahin\TipeKegiatan;
 
 class DashboardController extends Controller
 {
@@ -26,21 +26,21 @@ class DashboardController extends Controller
 
     public function tamuInternasionalBaru(){
     	//created on this year
-    	$user_baru = User::whereYear("created_at", "=", date("Y"))->count();
+    	$tamu_internasional_baru = TamuInternasional::whereYear("created_at", "=", date("Y"))->count();
 
-    	return $user_baru;
+    	return $tamu_internasional_baru;
     }
 
     public function totalTamuInternasional(){
     	//deleted on is null
-    	$user = User::count();
+    	$tamu_internasional = TamuInternasional::count();
 
-    	return $user;
+    	return $tamu_internasional;
     }
 
     public function berkasExpired(){
     	//user.deleted is null and berkas.expired_on<date("Y-m-d")
-    	$dokumen = User::withCount(["dokumen" => function ($query){
+    	$dokumen = TamuInternasional::withCount(["dokumen" => function ($query){
     		$query->where("expired_on", "<", date("Y-m-d"));
     	}])->get();
 
@@ -61,20 +61,20 @@ class DashboardController extends Controller
     	return $dokumen;
     }
 
-    public function totalUserBaru(){
-    	$tipe_user = TipeUser::all();
-    	$user = User::select(\DB::raw("count(id)"), "tipe", \DB::raw("EXTRACT(YEAR FROM created_at) as tahun"))->whereYear("created_at", "<=", date("Y"))->whereYear("created_at", ">=", (date("Y")-5))->groupBy("tahun", "tipe")->orderBy("tahun", "asc")->get();
+    public function totalTamuInternasionalBaru(){
+    	$tipe_kegiatan = TipeKegiatan::all();
+    	$tamu_internasional = TamuInternasional::select(\DB::raw("count(id)"), "tipe", \DB::raw("EXTRACT(YEAR FROM created_at) as tahun"))->whereYear("created_at", "<=", date("Y"))->whereYear("created_at", ">=", (date("Y")-5))->groupBy("tahun", "tipe")->orderBy("tahun", "asc")->get();
     	$data = array();
-    	$data_user = array();
+    	$data_tamu_internasional = array();
 
-    	foreach ($user as $users) {
-    		$data_user[$users->tipe][$users->tahun] = $users->count;
+    	foreach ($tamu_internasional as $tamu_internasionals) {
+    		$data_tamu_internasional[$tamu_internasionals->tipe][$tamu_internasionals->tahun] = $tamu_internasionals->count;
     	}
 
-    	foreach ($tipe_user as $tipe) {
+    	foreach ($tipe_kegiatan as $tipe) {
     		$x=0;
     		for ($i=intval(date("Y")-4); $i <= intval(date("Y")) ; $i++) { 
-    			$data[$tipe->nama][$x++] = (isset($data_user[$tipe->id][$i]))? $data_user[$tipe->id][$i]:0 ;
+    			$data[$tipe->nama][$x++] = (isset($data_tamu_internasional[$tipe->id][$i]))? $data_tamu_internasional[$tipe->id][$i]:0 ;
        		}
     	}
     	
@@ -84,18 +84,18 @@ class DashboardController extends Controller
     	return response()->json(array($data));
     }
 
-    public function totalUserPerKegiatan(){
-    	$user = User::with("tipe_user")->select(\DB::raw("count(id)"), "tipe")->groupBy("tipe")->orderBy("tipe", "asc")->get();
+    public function totalTamuInternasionalPerKegiatan(){
+    	$user = TamuInternasional::with("tipe_kegiatan")->select(\DB::raw("count(id)"), "tipe")->groupBy("tipe")->orderBy("tipe", "asc")->get();
 
     	// dd($user);
     	$data = array();
     	foreach ($user as $data_user) {
-    		$data[$data_user->tipe_user->nama] = $data_user->count;
+    		$data[$data_user->tipe_kegiatan->nama] = $data_user->count;
     	}
     	return response()->json($data);
     }
 
-    public function totalUserPerNegara(){
+    public function totalTamuInternasionalPerNegara(){
 
     }
 
