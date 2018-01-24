@@ -61,7 +61,7 @@
                               @endif
                             </div>
                             <div class="content">
-                                {!! Form::open(array("url" => "/user/tambah", 'class'=>'', 'id'=>'tambah_user', 'role'=>'form', 'files'=>true))!!}
+                                {!! Form::open(array("url" => "/tamu_internasional/tambah", 'class'=>'', 'id'=>'tambah_user', 'role'=>'form', 'files'=>true))!!}
                                 <input type="hidden" name="id" value="{{(isset($tamu_internasional))? $tamu_internasional->id: null}}">
                                 <input type="hidden" name="foto_lama" value="{{(isset($tamu_internasional))? $tamu_internasional->foto: null}}">
                                 <input type="hidden" name="step" value="biodata">
