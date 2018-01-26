@@ -4,4 +4,6 @@
 Homestead.yaml
 Homestead.json
 .env
-/public/uploads/
+/public/uploads/berkas/*.jpeg
+/public/uploads/user/*.jpeg
+!/public/uploads/user/default.jpeg
