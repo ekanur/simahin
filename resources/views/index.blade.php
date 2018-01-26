@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="footer">
                                     <div class="stats"> 
-                                    Pada 2017
+                                    Pada {{date("Y")}}
                                     </div>
                                 </div>
                             </div>

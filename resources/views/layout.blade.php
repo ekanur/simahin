@@ -228,10 +228,10 @@
         </footer>
 
     </div>
-    @yield('modal');
+    
 </div>
 
-
+@yield('modal')
 
 </body>
 

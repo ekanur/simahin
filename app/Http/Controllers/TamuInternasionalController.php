@@ -72,7 +72,7 @@ class TamuInternasionalController extends Controller
         if ($tamu_internasional->save()) {
 
             \Session::flash("flash_message", "Profile berhasil dibuat, silakan upload berkas legalitas.");
-            return redirect("/user/edit/".$tamu_internasional->id."#tab_berkas");
+            return redirect("/tamu_internasional/edit/".$tamu_internasional->id."#tab_berkas");
         }else{
             \Session::flash("flash_message", "Terjadi kesalahan. Silakan coba lagi");
             return redirect()->back();
@@ -105,7 +105,7 @@ class TamuInternasionalController extends Controller
         
         foreach ($request_file as $value) {
 
-            $data[] = array("kategori_id"=>$kategori[$value], "scan_file"=>$this->uploadBerkas($value, $request->user_id, $request->file($value)), "expired_on"=>$request->input("expired_".$value), 'user_id'=>$request->user_id);
+            $data[] = array("kategori_id"=>$kategori[$value], "scan_file"=>$this->uploadBerkas($value, $request->user_id, $request->file($value)), "expired_on"=>$request->input("expired_".$value), 'tamu_internasional_id'=>$request->user_id);
         }
         
         // dd($data);
@@ -117,7 +117,7 @@ class TamuInternasionalController extends Controller
         }else{
             \Session::flash("flash_message", "Terjadi kesalahan. Silakan coba lagi");
         }
-        return redirect("/user/edit/".$request->user_id."#tab_berkas");
+        return redirect("/tamu_internasional/edit/".$request->user_id."#tab_berkas");
     }
 
     public function uploadBerkas($tipe_berkas, $tamu_internasional_id, $file){
@@ -171,7 +171,7 @@ class TamuInternasionalController extends Controller
             return redirect()->back()->withInput();
         }else{
             \Session::flash("flash_message", "Berhasil memperbarui dokumen");
-            return redirect("/user/edit/".$request->user_id."#tab_berkas");
+            return redirect("/tamu_internasional/edit/".$request->user_id."#tab_berkas");
         }
         
     }
@@ -274,7 +274,7 @@ class TamuInternasionalController extends Controller
 
 
     public function hapus($id){
-        $tamu_internasional = User::find($id);
+        $tamu_internasional = TamuInternasional::find($id);
         $tamu_internasional->delete();
         $dokumen = Dokumen::find($id);
         $dokumen->delete();

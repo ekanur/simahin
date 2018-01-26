@@ -242,7 +242,7 @@
 
                         @if(isset($tamu_internasional))
                         @if(sizeof($dokumen) > 0)
-                        {!! Form::open(array("url" => "/user/update_berkas", 'class'=>'', 'id'=>'berkas_legalitas', 'role'=>'form', 'files'=>true))!!}
+                        {!! Form::open(array("url" => "/tamu_internasional/update_berkas", 'class'=>'', 'id'=>'berkas_legalitas', 'role'=>'form', 'files'=>true))!!}
                           <input type="hidden" name="step" value="update_berkas">
                           {{-- @if(isset($tamu_internasional->dokumen)) --}}
                           {{-- untuk menghapus file lama --}}
@@ -252,7 +252,7 @@
                           {{-- @endif --}}
                          
                         @else
-                          {!! Form::open(array("url" => "/user/simpan_berkas", 'class'=>'', 'id'=>'berkas_legalitas', 'role'=>'form', 'files'=>true))!!} 
+                          {!! Form::open(array("url" => "/tamu_internasional/simpan_berkas", 'class'=>'', 'id'=>'berkas_legalitas', 'role'=>'form', 'files'=>true))!!} 
                           <input type="hidden" name="step" value="upload_berkas">
                         @endif
                           <input type="hidden" name="tipe_user" value="{{ $tamu_internasional->tipe }}">

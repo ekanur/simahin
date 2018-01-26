@@ -35,7 +35,7 @@
                                         
                                     </thead>
                                     <tbody>
-                                    @if(is_null($tamu_internasional))
+                                    @if(!isset($tamu_internasional))
                                     <tr>
                                         <td colspan="8"><strong class="help-text">Data tidak tersedia</strong></td>
                                     </tr>
@@ -80,27 +80,29 @@
             
 @endsection
 
+@if(isset($data_tamu_internasional))
 @section("modal")
 <div id="confirmDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title" id="myModalLabel">Hapus Tamu Internasional</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            Anda yakin akan menghapus data tamu <strong id="#nama"></strong> ?
-                                                
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href=""  class="btn btn-secondary waves-effect" data-dismiss="modal">Tidak</a>
-                                            <a href="{{ url('/tamu_internasional/hapus') }}/{{$data_tamu_internasional->id}}" class="btn btn-success waves-effect waves-light">Ya</a>
-                                        </div>
-                                
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>  
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Hapus Tamu Internasional</h4>
+            </div>
+            <div class="modal-body">
+                Anda yakin akan menghapus data tamu <strong id="#nama"></strong> ?
+                    
+            </div>
+            <div class="modal-footer">
+                <a href=""  class="btn btn-secondary waves-effect" data-dismiss="modal">Tidak</a>
+                <a href="{{ url('/tamu_internasional/hapus') }}/{{$data_tamu_internasional->id}}" class="btn btn-success waves-effect waves-light">Ya</a>
+            </div>
+    
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>  
 @endsection
+@endif
 
 @section("js")
     <script type="text/javascript" src="{{ url('/assets/js/jquery.dataTables.min.js') }}"></script>

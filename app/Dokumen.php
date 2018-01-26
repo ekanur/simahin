@@ -10,7 +10,7 @@ class Dokumen extends Model
 {
 	use SoftDeletes;
 	protected $table = 'dokumen';
-    protected $fillable = ['kategori_id', 'scan_file', 'expired_on', 'user_id', "created_at"];
+    protected $fillable = ['kategori_id', 'scan_file', 'expired_on', 'tamu_internasional_id', "created_at"];
     protected $dates = ['deleted_at'];
     
     public function kategori_dokumen(){
