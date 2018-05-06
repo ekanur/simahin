@@ -18,9 +18,10 @@ class DashboardController extends Controller
     	$total_tamu = $this->totalTamuInternasional();
     	$berkas_expired = $this->berkasExpired();
     	$pembaruan_berkas = $this->pembaruanBerkas();
+        $per_negara = $this->totalTamuInternasionalPerNegara();
 
     	// dd($pembaruan_berkas);
-    	return view("index", compact('tamu_baru', 'total_tamu', 'berkas_expired', "pembaruan_berkas"));
+    	return view("index", compact('tamu_baru', 'total_tamu', 'berkas_expired', "pembaruan_berkas", "per_negara"));
     }
 
 
@@ -96,7 +97,18 @@ class DashboardController extends Controller
     }
 
     public function totalTamuInternasionalPerNegara(){
+        $user = TamuInternasional::with('negara')->select(\DB::raw("count(id) as total"), "negara_id")->groupBy('negara_id')->get();
 
+        $data = array();
+
+        foreach ($user as $data_user) {
+            $data[] = array(
+                "singkatan" => $data_user->negara->nama,
+                "total" => $data_user->total
+            );
+        }
+
+        return $data;
     }
 
 }

@@ -222,7 +222,7 @@
                     </ul> --}}
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.ptik.um.ac.id">PTIK Universitas Negeri Malang</a>
+                    &copy; {{ date("Y") }} <a href="http://www.ptik.um.ac.id">PTIK Universitas Negeri Malang</a>
                 </p>
             </div>
         </footer>

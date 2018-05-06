@@ -397,12 +397,9 @@
             function drawRegionsMap(){
                 var data = google.visualization.arrayToDataTable([
                         ["Negara", "Total"],
-                        ['Germany', 200],
-                        ['United States', 300],
-                        ['Brazil', 400],
-                        ['Canada', 500],
-                        ['France', 600],
-                        ['RU', 700]
+                        @foreach($per_negara as $total_per_negara)
+                        ['{{ $total_per_negara['singkatan'] }}', {{ $total_per_negara["total"] }}],
+                        @endforeach
                     ]);
 
                 var options = {};
